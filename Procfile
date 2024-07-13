@@ -1,1 +1,1 @@
-web: java -jar target/your-artifact-id-1.0-SNAPSHOT.jar
+web: java -jar target/santander-dev-week-0.0.1-SNAPSHOT.jar
