@@ -34,6 +34,16 @@ public class UserController {
         List<User> users = userService.findAllUsers(name);
         return ResponseEntity.ok(users);
     }
+    
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody User userToCreate) {
+        var userCreated = userService.create(userToCreate);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userCreated.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(userCreated);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userToUpdate) {
@@ -47,13 +57,5 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
-    public ResponseEntity<User> create(@RequestBody User userToCreate) {
-        var userCreated = userService.create(userToCreate);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(userCreated.getId())
-                .toUri();
-        return ResponseEntity.created(location).body(userCreated);
-    }
+
 }
