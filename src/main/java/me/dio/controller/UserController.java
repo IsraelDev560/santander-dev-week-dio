@@ -29,19 +29,19 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/users")
+    @GetMapping()
     public ResponseEntity<List<User>> findAllUsers(@RequestParam(required = false) String name) {
         List<User> users = userService.findAllUsers(name);
         return ResponseEntity.ok(users);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userToUpdate) {
         User updatedUser = userService.updateUser(id, userToUpdate);
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User user = userService.deleteUser(id);
         return ResponseEntity.ok(user);
