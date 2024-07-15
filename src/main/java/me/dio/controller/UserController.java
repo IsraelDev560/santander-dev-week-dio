@@ -22,19 +22,19 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
         var user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
-
+    @CrossOrigin(origins = "*")
     @GetMapping()
     public ResponseEntity<List<User>> findAllUsers(@RequestParam(required = false) String name) {
         List<User> users = userService.findAllUsers(name);
         return ResponseEntity.ok(users);
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User userToCreate) {
         var userCreated = userService.create(userToCreate);
@@ -44,13 +44,13 @@ public class UserController {
                 .toUri();
         return ResponseEntity.created(location).body(userCreated);
     }
-
+    @CrossOrigin(origins = "*")
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userToUpdate) {
         User updatedUser = userService.updateUser(id, userToUpdate);
         return ResponseEntity.ok(updatedUser);
     }
-
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User user = userService.deleteUser(id);
