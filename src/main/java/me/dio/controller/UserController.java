@@ -34,7 +34,7 @@ public class UserController {
         List<User> users = userService.findAllUsers(name);
         return ResponseEntity.ok(users);
     }
-    
+
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User userToCreate) {
         var userCreated = userService.create(userToCreate);
